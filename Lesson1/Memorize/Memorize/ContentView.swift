@@ -11,10 +11,12 @@ struct ContentView: View {
     var game: EmojiMemoryGame
 
     var body: some View {
+        let font: Font = game.cards.count < 5 ? .largeTitle : .title2
         return HStack {
             ForEach(game.cards) { card in
                ZStack {
                 CardView(card: card)
+                    .aspectRatio(0.67, contentMode: .fit)
                     .onTapGesture {
                         game.choose(card: card)
                     }
@@ -24,7 +26,7 @@ struct ContentView: View {
 
         .padding()
         .foregroundColor(Color.orange)
-        .font(Font.largeTitle)
+        .font(font)
     }
 }
 
